@@ -1,9 +1,19 @@
 const express = require('express')
+import { connect, set, Types } from "mongoose";
 import * as bodyParser from 'body-parser'
+import User from './schema/User'
 
 const app = express()
 
 const PORT = process.env.PORT
+const MONGO_URI = process.env.MONGO_URI||""
+const MONGO_DEBUG = process.env.MONGO_DEBUG||""
+
+connect(MONGO_URI, {  })
+    .then(() => console.log("connected"))
+    .catch((err) => console.log("error ", err));
+
+set('debug', eval(MONGO_DEBUG));
 
 app.use(bodyParser.json());
 
