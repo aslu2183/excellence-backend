@@ -1,7 +1,9 @@
 const express = require('express')
+const cors    = require('cors')
+
 import { connect, set, Types } from "mongoose";
 import * as bodyParser from 'body-parser'
-import User from './schema/User'
+import BoardController from "./controller/BoardController";
 
 const app = express()
 
@@ -17,6 +19,21 @@ set('debug', eval(MONGO_DEBUG));
 
 app.use(bodyParser.json());
 
+var allowedOrigins = ['http://localhost:3000','https://kanban.aslu2183.info'];
+app.use(cors({
+    origin: function(origin, callback){
+        // allow requests with no origin 
+        // (like mobile apps or curl requests)
+        if(!origin) return callback(null, true);
+        if(allowedOrigins.indexOf(origin) === -1){
+            var msg = 'The CORS policy for this site does not ' +
+                    'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}));
+
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
@@ -28,6 +45,10 @@ app.get('/api',(req,res) => {
         query  : req.query,
         body   : req.body
     })
+})
+
+app.post('/api/create-board',(req,res) => {
+    return BoardController.create_board(req,res)
 })
   
 app.listen(PORT, () => {
