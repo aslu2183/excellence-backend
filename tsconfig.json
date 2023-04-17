@@ -1,0 +1,36 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "skipLibCheck": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "forceConsistentCasingInFileNames": true,
+      "lib": [
+        "es2017"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "newLine": "LF",
+      "noEmitOnError": true,
+      "noImplicitReturns": false,
+      "noUnusedLocals": false,
+      "noUnusedParameters": false,
+      "allowSyntheticDefaultImports": true,
+      "outDir": "dist",
+      "removeComments": true,
+      "rootDir": "src",
+      "sourceMap": false,
+      "strict": true,
+      "noImplicitAny": false,
+      "strictFunctionTypes": false,
+      "target": "es6"
+    },
+    "include":[
+      "src/**/*.ts"
+    ],
+    "exclude":[
+      "node_modules",
+      "dist"
+    ]
+  }
+  
