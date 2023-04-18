@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//create Schema
-
-// id: ID!
-// name: String!
-// code: String
-// country Object
 const PanelSchema = new Schema({
     name : {
         type: String,
         required: true
     },
+    color : {
+        type: String
+    }
 
 },{ timestamps: true });
 
@@ -23,6 +20,13 @@ const Board = new Schema({
     description : {
         type: String,
         required: false,    
+    },
+    slug : {
+        type: String,
+        required : true
+    },
+    color : {
+        type: String
     },
     panels : [PanelSchema]
 },{ timestamps: true });

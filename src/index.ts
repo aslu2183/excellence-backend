@@ -47,8 +47,28 @@ app.get('/api',(req,res) => {
     })
 })
 
-app.post('/api/create-board',(req,res) => {
+app.post('/create-board',(req,res) => {
     return BoardController.create_board(req,res)
+})
+
+app.get('/list-board',(req,res) => {
+    return BoardController.list_board(req,res)
+})
+
+app.post('/delete-board',(req,res) => {
+    return BoardController.delete_board(req,res)
+})
+
+app.post('/create-panel',(req,res) => {
+    return BoardController.create_panel(req,res)
+})
+
+app.post('/get-board-details',(req,res) => {
+    return BoardController.get_board_details(req,res)
+})
+
+app.post('/delete-panel',(req,res) => {
+    return BoardController.delete_panel(req,res)
 })
   
 app.listen(PORT, () => {
