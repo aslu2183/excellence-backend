@@ -11,6 +11,7 @@ const checkListSchema = new Schema({
     }
 });
 
+
 const Task = new Schema({
     boardId: {
         type: Schema.Types.ObjectId,
@@ -23,8 +24,19 @@ const Task = new Schema({
         type: String,
         required: true
     },
-    color : {
+    longDescription : {
         type: String
+    },
+    colors : {
+        header : {
+            type : String
+        },
+        content : {
+            type : String
+        }
+    },
+    position : {
+        type: Number
     },
     checklist : [checkListSchema]
 },{ timestamps: true });

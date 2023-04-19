@@ -192,5 +192,32 @@ export default class BoardController {
             })
         }
     }
+
+    static async update_task(req,res){
+        try {
+            const inserted = await Tasks.findOneAndUpdate({
+                    _id: req.body.taskId
+                },{
+                    $set:{
+                        checklist: req.body.checklist,
+                        longDescription: req.body.longDescription
+                    }
+                },{new:true})
+
+            if(inserted){
+                return res.status(200).json({
+                    status : true,
+                    message: "Task Updated",
+                    data   : inserted
+                })
+            }    
+        } catch (error:any) {
+            return res.status(200).json({
+                status : false,
+                message: "Something went wrong",
+                error  : error?.message
+            })
+        }
+    }
     
 }

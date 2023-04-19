@@ -78,6 +78,10 @@ app.post('/create-task',(req,res) => {
 app.post('/delete-task',(req,res) => {
     return BoardController.delete_task(req,res)
 })
+
+app.post('/update-task',(req,res) => {
+    return BoardController.update_task(req,res)
+})
   
 app.listen(PORT, () => {
     console.log(`[server]: Server is running at port : ${PORT}`);
