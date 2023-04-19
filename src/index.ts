@@ -70,6 +70,14 @@ app.post('/get-board-details',(req,res) => {
 app.post('/delete-panel',(req,res) => {
     return BoardController.delete_panel(req,res)
 })
+
+app.post('/create-task',(req,res) => {
+    return BoardController.create_task(req,res)
+})
+
+app.post('/delete-task',(req,res) => {
+    return BoardController.delete_task(req,res)
+})
   
 app.listen(PORT, () => {
     console.log(`[server]: Server is running at port : ${PORT}`);

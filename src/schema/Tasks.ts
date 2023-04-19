@@ -13,12 +13,11 @@ const checkListSchema = new Schema({
 
 const Task = new Schema({
     boardId: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'Board'
     },
     panelId : {
-        type: String,
-        required: true,    
+        type: Schema.Types.ObjectId,
     },
     description : {
         type: String,
