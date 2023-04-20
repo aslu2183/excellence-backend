@@ -194,13 +194,14 @@ export default class BoardController {
     }
 
     static async update_task(req,res){
+        const data_to_update:any = {...req.body}
+        delete data_to_update.taskId
         try {
             const inserted = await Tasks.findOneAndUpdate({
                     _id: req.body.taskId
                 },{
                     $set:{
-                        checklist: req.body.checklist,
-                        longDescription: req.body.longDescription
+                        ...data_to_update
                     }
                 },{new:true})
 
@@ -211,6 +212,25 @@ export default class BoardController {
                     data   : inserted
                 })
             }    
+        } catch (error:any) {
+            return res.status(200).json({
+                status : false,
+                message: "Something went wrong",
+                error  : error?.message
+            })
+        }
+    }
+
+    static reorder_task(req,res){
+        const tasks = req.body.tasks
+        try {
+            tasks.forEach(async (item) => {
+                await Tasks.findOneAndUpdate({_id:item._id},{$set:{position:item.position}})
+            })
+            return res.status(200).json({
+                status : true,
+                message: "Task Updated",
+            })
         } catch (error:any) {
             return res.status(200).json({
                 status : false,
