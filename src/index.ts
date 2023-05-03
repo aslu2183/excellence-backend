@@ -86,6 +86,16 @@ app.post('/update-task',(req,res) => {
 app.post('/reorder-task',(req,res) => {
     return BoardController.reorder_task(req,res)
 })
+
+app.get('/get-ip-address',(req,res) => {
+    const ipv4 = req.socket.remoteAddress.split(":")
+    return res.status(200).json({
+        status : true,
+        remoteIpAddress : req.socket.remoteAddress,
+        x_forwared_for  : req.header['x-forwarded-for'] ?? 'undefined',
+        ipV4 : ipv4[ipv4.length - 1]
+    })
+})
   
 app.listen(PORT, () => {
     console.log(`[server]: Server is running at port : ${PORT}`);
