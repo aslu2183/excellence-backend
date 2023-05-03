@@ -93,7 +93,8 @@ app.get('/get-ip-address',(req,res) => {
         status : true,
         remoteIpAddress : req.socket.remoteAddress,
         x_forwared_for  : req.header['x-forwarded-for'] ?? 'undefined',
-        ipV4 : ipv4[ipv4.length - 1]
+        ipV4 : ipv4[ipv4.length - 1],
+        test : req.header['x-real-ip'] ?? 'not-definded'
     })
 })
   
